@@ -1,4 +1,5 @@
 const users = []
+const moment = require('moment')
 //addUser, removeUser, getUser, getUsersInRoom
 const addUser = (id, username, room)=>{
     room = room.trim()
@@ -15,7 +16,7 @@ const addUser = (id, username, room)=>{
         }
     }
     //check for user already exist
-    const newUser = {id, username, room}
+    const newUser = {id, username, room, timeStamp:moment().format('D/M h:mm a')}
     const existingId = users.findIndex((user)=>{
         return user.id === newUser.id
     })

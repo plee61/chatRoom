@@ -5,6 +5,7 @@ const socketio = require('socket.io')
 const Filter = require('bad-words')
 const {generateMessage} = require('./util/message')
 const { addUser, getUser, removeUser, getUsersInRoom } = require('./util/users')
+
 // Create the Express application
 const app = express()
 
@@ -33,6 +34,7 @@ io.on('connection', (socket) => {
             room: newUser.room,
             users: getUsersInRoom(newUser.room)
         })
+       
         socket.broadcast.to(newUser.room).emit('addMessage',generateMessage(`${newUser.username} has joined ${newUser.room}`, newUser.username))
     })
 
